@@ -77,11 +77,11 @@ def home():
 @app.route('/', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
-        flash('No file part')
+        flash('Aucun fichier')
         return redirect(request.url)
     file = request.files['file']
     if file.filename == '':
-        flash('No image selected for uploading')
+        flash('Aucun image sélectionné pour uploader')
         return redirect(request.url)
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -94,7 +94,7 @@ def upload_image():
             flash(f'Avec type du doigt {index}: {value} %   ')
         return render_template('index.html', filename=filename)
     else:
-        flash('Allowed image types are - png, jpg, jpeg, gif')
+        flash('Images allowés : .jpg, .bmp')
         return redirect(request.url)
 
 
